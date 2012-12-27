@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.ops4j</groupId>
+        <artifactId>master</artifactId>
+        <version>3.1.0</version>
+    </parent>
+
+    <groupId>org.ops4j.pax.tipi</groupId>
+    <artifactId>tipi-master</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0.0-SNAPSHOT</version>
+    <name>OPS4J Pax Tipi Master POM</name>
+
+    <properties>
+        <tipi.osgi.export />
+        <tipi.osgi.import>*</tipi.osgi.import>
+        <tipi.osgi.private />
+        <tipi.osgi.dynamicimport />
+        <tipi.osgi.failok>false</tipi.osgi.failok>
+        <tipi.osgi.embed.dependency />
+    </properties>
+
+    <prerequisites>
+        <maven>3.0.0</maven>
+    </prerequisites>
+
+    <scm>
+        <connection>scm:git:git@github.com:ops4j/org.ops4j.pax.tipi.git</connection>
+        <developerConnection>scm:git:git@github.com:ops4j/org.ops4j.pax.tipi.git</developerConnection>
+        <url>git@github.com:ops4j/org.ops4j.pax.tipi.git</url>
+        <tag>HEAD</tag>
+    </scm>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>target/unpacked-sources</directory>
+                <includes>
+                    <include>**/*.java</include>
+                </includes>
+            </resource>
+        </resources>
+
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-dependency-plugin</artifactId>
+                    <executions>
+                        <execution>
+                            <id>unpack-resources</id>
+                            <phase>generate-resources</phase>
+                            <goals>
+                                <goal>unpack</goal>
+                            </goals>
+                            <configuration>
+                                <artifactItems>
+                                    <artifactItem>
+                                        <groupId>${tipi.orig.groupId}</groupId>
+                                        <artifactId>${tipi.orig.artifactId}</artifactId>
+                                        <version>${tipi.orig.version}</version>
+                                    </artifactItem>
+                                </artifactItems>
+                                <excludes>**/*.class</excludes>
+                                <failOnMissingClassifierArtifact>false</failOnMissingClassifierArtifact>
+                                <outputDirectory>target/unpacked-resources</outputDirectory>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>unpack-sources</id>
+                            <phase>post-integration-test</phase>
+                            <goals>
+                                <goal>unpack</goal>
+                            </goals>
+                            <configuration>
+                                <artifactItems>
+                                    <artifactItem>
+                                        <groupId>${tipi.orig.groupId}</groupId>
+                                        <artifactId>${tipi.orig.artifactId}</artifactId>
+                                        <version>${tipi.orig.version}</version>
+                                        <classifier>sources</classifier>
+                                    </artifactItem>
+                                </artifactItems>
+                                <includes>**/*.java</includes>
+                                <failOnMissingClassifierArtifact>false</failOnMissingClassifierArtifact>
+                                <outputDirectory>target/unpacked-sources</outputDirectory>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>2.2.1</version>
+                    <executions>
+                        <execution>
+                            <id>attach-sources</id>
+                            <phase>post-integration-test</phase>
+                            <goals>
+                                <goal>jar-no-fork</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                    <configuration>
+                        <attach>true</attach>
+                        <archive>
+                            <manifestEntries>
+                                <Bundle-ManifestVersion>2</Bundle-ManifestVersion>
+                                <Bundle-Name>${project.name}</Bundle-Name>
+                                <Bundle-SymbolicName>${project.artifactId}.source</Bundle-SymbolicName>
+                                <Bundle-Version>${project.version}</Bundle-Version>
+                                <Eclipse-SourceBundle>
+                                    ${project.artifactId};version="${project.version}";roots:="."
+                                </Eclipse-SourceBundle>
+                            </manifestEntries>
+                        </archive>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.felix</groupId>
+                    <artifactId>maven-bundle-plugin</artifactId>
+                    <version>2.3.7</version>
+                    <extensions>true</extensions>
+                    <configuration>
+                        <instructions>
+                            <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
+                            <Bundle-Description>${project.description}</Bundle-Description>
+                            <Export-Package>${tipi.osgi.export}</Export-Package>
+                            <Import-Package>${tipi.osgi.import}</Import-Package>
+                            <Private-Package>${tipi.osgi.private}</Private-Package>
+                            <DynamicImport-Package>${tipi.osgi.dynamicimport}</DynamicImport-Package>
+                            <Embed-Dependency>${tipi.osgi.embed.dependency}</Embed-Dependency>
+                            <Bundle-NativeCode>${tipi.osgi.native}</Bundle-NativeCode>
+                            <Bundle-Activator>${tipi.osgi.activator}</Bundle-Activator>
+                            <Include-Resource>target/unpacked-resources</Include-Resource>
+                            <_failok>${tipi.osgi.failok}</_failok>
+                            <_versionpolicy>[$(version;==;$(@)),$(version;+;$(@)))</_versionpolicy>
+                            <_removeheaders>Ignore-Package,Include-Resource,Private-Package,Embed-Dependency
+                            </_removeheaders>
+                        </instructions>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
+
+    </build>
+
+</project>

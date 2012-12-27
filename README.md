@@ -1,4 +1,12 @@
-org.ops4j.pax.tipi
-==================
+Pax Tipi 
+========
 
-Third-party libraries turned to OSGi bundles
+## About
+
+Pax Tipi is a no-fuss platform for osgifying third-party Open Source libraries and releasing them to the Central Repository (Maven Central).
+
+## Documentation
+
+http://team.ops4j.org/wiki/display/PAXTIPI
+
+
