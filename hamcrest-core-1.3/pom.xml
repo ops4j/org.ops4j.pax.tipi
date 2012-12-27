@@ -16,6 +16,10 @@
     <name>OPS4J Pax Tipi - ${tipi.orig.artifactId}</name>
     <description>This OSGi bundle wraps ${tipi.orig.artifactId}-${tipi.orig.version}.</description>
 
+    <!-- 
+         This section may seem redundant, but if you delete it, maven-release-plugin will
+         compute an incorrect URL.
+     -->
     <scm>
         <connection>scm:git:git@github.com:ops4j/org.ops4j.pax.tipi.git</connection>
         <developerConnection>scm:git:git@github.com:ops4j/org.ops4j.pax.tipi.git</developerConnection>
