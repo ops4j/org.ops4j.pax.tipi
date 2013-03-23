@@ -31,6 +31,9 @@
         <!-- value of Import-Package header - override in child POM if needed -->
         <tipi.osgi.import>*</tipi.osgi.import>
 
+        <!-- value of Bundle-NativeCode header - override in child POM if needed -->
+        <tipi.osgi.native />
+
         <!-- value of Private-Package instruction - override in child POM if needed -->
         <tipi.osgi.private />
 
