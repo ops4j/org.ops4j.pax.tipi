@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/org.ops4j.pax.tipi.platform.feature_1.0.0.qualifier.jar" id="org.ops4j.pax.tipi.platform.feature" version="1.0.0.qualifier"/>
+</site>
