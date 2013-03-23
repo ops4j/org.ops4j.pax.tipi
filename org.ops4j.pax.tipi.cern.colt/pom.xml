@@ -32,7 +32,7 @@
         <tipi.orig.artifactId>colt</tipi.orig.artifactId>
         <tipi.orig.version>${project.version}</tipi.orig.version>
         <tipi.osgi.export>
-           cern.colt*;version="${project.version}"
+           *;version="${project.version}"
         </tipi.osgi.export>
     </properties>
 
