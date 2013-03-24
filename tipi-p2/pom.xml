@@ -93,6 +93,11 @@
     </dependency>
     <dependency>
       <groupId>org.ops4j.pax.tipi</groupId>
+      <artifactId>org.ops4j.pax.tipi.com.tinkerpop.gremlin.groovy</artifactId>
+      <version>${tinkerpop-version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.ops4j.pax.tipi</groupId>
       <artifactId>org.ops4j.pax.tipi.com.tinkerpop.gremlin.java</artifactId>
       <version>${tinkerpop-version}</version>
     </dependency>
@@ -117,6 +122,12 @@
     <dependency>
       <groupId>org.ops4j.pax.tipi</groupId>
       <artifactId>org.ops4j.pax.tipi.com.tinkerpop.frames</artifactId>
+      <version>${tinkerpop-version}</version>
+      <classifier>sources</classifier>
+    </dependency>
+    <dependency>
+      <groupId>org.ops4j.pax.tipi</groupId>
+      <artifactId>org.ops4j.pax.tipi.com.tinkerpop.gremlin.groovy</artifactId>
       <version>${tinkerpop-version}</version>
       <classifier>sources</classifier>
     </dependency>
