@@ -227,6 +227,16 @@
             </roles>
             <timezone>UTC+1</timezone>
         </developer>
+        <developer>
+            <id>dschmitz</id>
+            <name>David Schmitz</name>
+            <email>David-Schmitz@gmx.net</email>
+            <organization>independent software developer</organization>
+            <roles>
+                <role>Developer</role>
+            </roles>
+            <timezone>UTC+1</timezone>
+        </developer>
     </developers>
 
 </project>
