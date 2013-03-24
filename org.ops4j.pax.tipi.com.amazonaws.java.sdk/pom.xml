@@ -30,7 +30,7 @@
     <properties>
         <tipi.orig.groupId>com.amazonaws</tipi.orig.groupId>
         <tipi.orig.artifactId>aws-java-sdk</tipi.orig.artifactId>
-        <tipi.orig.version>${tipi.orig.version}</tipi.orig.version>
+        <tipi.orig.version>${project.version}</tipi.orig.version>
         <tipi.orig.import>
               javax.crypto,
               javax.crypto.spec,

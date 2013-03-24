@@ -17,7 +17,84 @@
    </license>
    
    <plugin
+         id="org.ops4j.pax.tipi.cern.colt"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+   
+   <plugin
+         id="org.ops4j.pax.tipi.hamcrest.core"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.ops4j.pax.tipi.junit"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <!--plugin
+         id="org.ops4j.pax.tipi.com.amazonaws.java.sdk"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/-->
+
+   <plugin
+         id="org.ops4j.pax.tipi.com.tinkerpop.blueprints.core"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+   
+   <plugin
+         id="org.ops4j.pax.tipi.com.tinkerpop.blueprints.orient.graph"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.ops4j.pax.tipi.com.tinkerpop.frames"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.ops4j.pax.tipi.com.tinkerpop.gremlin.java"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+   
+   <plugin
+         id="org.ops4j.pax.tipi.com.tinkerpop.pipes"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+   
+   <plugin
+         id="org.ops4j.pax.tipi.mysql.connector.java"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
          id="org.ops4j.pax.tipi.org.postgresql"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.ops4j.pax.tipi.org.xerial.sqlite.jdbc"
          download-size="0"
          install-size="0"
          version="0.0.0"

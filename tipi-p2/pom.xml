@@ -8,14 +8,19 @@
   <packaging>pom</packaging>
   <name>Tipi P2 repository</name>
 
+  <prerequisites>
+    <maven>3.0.0</maven>
+  </prerequisites>
+
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <tycho-version>0.17.0</tycho-version>
     <tinkerpop-version>2.3.0</tinkerpop-version>
   </properties>
-
+ 
   <modules>
     <module>org.ops4j.pax.tipi.platform.feature</module>
+    <module>org.ops4j.pax.tipi.platform.feature.source</module>
     <module>org.ops4j.pax.tipi.platform.p2</module>
   </modules>
 
@@ -30,8 +35,125 @@
   <dependencies>
     <dependency>
       <groupId>org.ops4j.pax.tipi</groupId>
+      <artifactId>org.ops4j.pax.tipi.cern.colt</artifactId>
+      <version>1.2.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.ops4j.pax.tipi</groupId>
+      <artifactId>org.ops4j.pax.tipi.hamcrest.core</artifactId>
+      <version>1.3.0.2-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>org.ops4j.pax.tipi</groupId>
+      <artifactId>org.ops4j.pax.tipi.hamcrest.core</artifactId>
+      <version>1.3.0.2-SNAPSHOT</version>
+      <classifier>sources</classifier>
+    </dependency>
+
+    <dependency>
+      <groupId>org.ops4j.pax.tipi</groupId>
+      <artifactId>org.ops4j.pax.tipi.junit</artifactId>
+      <version>4.11.0.2-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>org.ops4j.pax.tipi</groupId>
+      <artifactId>org.ops4j.pax.tipi.junit</artifactId>
+      <version>4.11.0.2-SNAPSHOT</version>
+      <classifier>sources</classifier>
+    </dependency>
+
+    <dependency>
+      <groupId>org.ops4j.pax.tipi</groupId>
+      <artifactId>org.ops4j.pax.tipi.com.amazonaws.java.sdk</artifactId>
+      <version>1.4.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.ops4j.pax.tipi</groupId>
+      <artifactId>org.ops4j.pax.tipi.com.amazonaws.java.sdk</artifactId>
+      <version>1.4.0</version>
+      <classifier>sources</classifier>
+    </dependency>
+
+    <!-- Tinkerpop -->
+    <dependency>
+      <groupId>org.ops4j.pax.tipi</groupId>
+      <artifactId>org.ops4j.pax.tipi.com.tinkerpop.blueprints.core</artifactId>
+      <version>${tinkerpop-version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.ops4j.pax.tipi</groupId>
+      <artifactId>org.ops4j.pax.tipi.com.tinkerpop.blueprints.orient.graph</artifactId>
+      <version>${tinkerpop-version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.ops4j.pax.tipi</groupId>
+      <artifactId>org.ops4j.pax.tipi.com.tinkerpop.frames</artifactId>
+      <version>${tinkerpop-version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.ops4j.pax.tipi</groupId>
+      <artifactId>org.ops4j.pax.tipi.com.tinkerpop.gremlin.java</artifactId>
+      <version>${tinkerpop-version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.ops4j.pax.tipi</groupId>
+      <artifactId>org.ops4j.pax.tipi.com.tinkerpop.pipes</artifactId>
+      <version>${tinkerpop-version}</version>
+    </dependency>
+    <!-- Tinkerpop Sources -->
+    <dependency>
+      <groupId>org.ops4j.pax.tipi</groupId>
+      <artifactId>org.ops4j.pax.tipi.com.tinkerpop.blueprints.core</artifactId>
+      <version>${tinkerpop-version}</version>
+      <classifier>sources</classifier>
+    </dependency>
+    <dependency>
+      <groupId>org.ops4j.pax.tipi</groupId>
+      <artifactId>org.ops4j.pax.tipi.com.tinkerpop.blueprints.orient.graph</artifactId>
+      <version>${tinkerpop-version}</version>
+      <classifier>sources</classifier>
+    </dependency>
+    <dependency>
+      <groupId>org.ops4j.pax.tipi</groupId>
+      <artifactId>org.ops4j.pax.tipi.com.tinkerpop.frames</artifactId>
+      <version>${tinkerpop-version}</version>
+      <classifier>sources</classifier>
+    </dependency>
+    <dependency>
+      <groupId>org.ops4j.pax.tipi</groupId>
+      <artifactId>org.ops4j.pax.tipi.com.tinkerpop.gremlin.java</artifactId>
+      <version>${tinkerpop-version}</version>
+      <classifier>sources</classifier>
+    </dependency>
+    <dependency>
+      <groupId>org.ops4j.pax.tipi</groupId>
+      <artifactId>org.ops4j.pax.tipi.com.tinkerpop.pipes</artifactId>
+      <version>${tinkerpop-version}</version>
+      <classifier>sources</classifier>
+    </dependency>
+
+
+    <dependency>
+      <groupId>org.ops4j.pax.tipi</groupId>
       <artifactId>org.ops4j.pax.tipi.org.postgresql</artifactId>
       <version>9.2.1002.jdbc4</version>
+    </dependency>
+    <dependency>
+      <groupId>org.ops4j.pax.tipi</groupId>
+      <artifactId>org.ops4j.pax.tipi.mysql.connector.java</artifactId>
+      <version>5.1.22.2-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>org.ops4j.pax.tipi</groupId>
+      <artifactId>org.ops4j.pax.tipi.org.xerial.sqlite.jdbc</artifactId>
+      <version>3.7.2</version>
+    </dependency>
+    <dependency>
+      <groupId>org.ops4j.pax.tipi</groupId>
+      <artifactId>org.ops4j.pax.tipi.org.xerial.sqlite.jdbc</artifactId>
+      <version>3.7.2</version>
+      <classifier>sources</classifier>
     </dependency>
   </dependencies>
 
