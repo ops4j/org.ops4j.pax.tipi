@@ -45,6 +45,9 @@
 
         <!-- value of Embed-Dependency instruction - override in child POM if needed -->
         <tipi.osgi.embed.dependency />
+
+        <!-- value of Fragment-Host instruction - override in child POM if needed -->
+        <tipi.osgi.fragment.host />
         
         <tipi.osgi.doc>http://team.ops4j.org/wiki/display/PAXTIPI</tipi.osgi.doc>
     </properties>
@@ -170,6 +173,7 @@
                             <Embed-Dependency>${tipi.osgi.embed.dependency}</Embed-Dependency>
                             <Bundle-NativeCode>${tipi.osgi.native}</Bundle-NativeCode>
                             <Bundle-Activator>${tipi.osgi.activator}</Bundle-Activator>
+                            <Fragment-Host>${tipi.osgi.fragment.host}</Fragment-Host>
                             <Bundle-DocURL>${tipi.osgi.doc}</Bundle-DocURL>
                             <Include-Resource>target/unpacked-resources</Include-Resource>
                             <_failok>${tipi.osgi.failok}</_failok>
