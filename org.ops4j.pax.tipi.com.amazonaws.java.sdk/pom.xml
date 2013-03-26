@@ -60,7 +60,7 @@
               org.apache.http.protocol;version="4.2.2",
               org.codehaus.jackson.map;version="1.9.11",
               org.codehaus.jackson;version="1.9.11",
-              org.junit;version="4.10.0";resolution:=optional,
+              org.junit;version="4.10.0"resolution:=optional,
               org.junit.rules;version="4.10.0";resolution:=optional,
               org.junit.runner.notification;version="4.10.0";resolution:=optional,
               org.junit.runners;version="4.10.0";resolution:=optional,
@@ -89,7 +89,6 @@
             <groupId>${tipi.orig.groupId}</groupId>
             <artifactId>${tipi.orig.artifactId}</artifactId>
             <version>${tipi.orig.version}</version>
-            <optional>true</optional>
         </dependency>
     </dependencies>
 
