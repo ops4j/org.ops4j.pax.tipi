@@ -15,7 +15,15 @@
    <license url="http://www.example.com/license">
       [Enter License Description here.]
    </license>
+
+   <includes
+         id="org.ops4j.pax.tipi.com.tinkerpop.feature.source"
+         version="0.0.0"/>
    
+   <includes
+         id="org.ops4j.pax.tipi.net.sf.jung.feature.source"
+         version="0.0.0"/>
+ 
    <plugin
          id="org.ops4j.pax.tipi.hamcrest.core.source"
          download-size="0"
@@ -43,48 +51,6 @@
          install-size="0"
          version="0.0.0"
          unpack="false"/ -->
-
-   <plugin
-         id="org.ops4j.pax.tipi.com.tinkerpop.blueprints.core.source"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.ops4j.pax.tipi.com.tinkerpop.blueprints.orient.graph.source"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.ops4j.pax.tipi.com.tinkerpop.frames.source"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-   
-   <plugin
-         id="org.ops4j.pax.tipi.com.tinkerpop.gremlin.groovy.source"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>   
-
-   <plugin
-         id="org.ops4j.pax.tipi.com.tinkerpop.gremlin.java.source"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.ops4j.pax.tipi.com.tinkerpop.pipes.source"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
 
    <plugin
          id="org.ops4j.pax.tipi.org.xerial.sqlite.jdbc.source"

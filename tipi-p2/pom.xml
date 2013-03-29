@@ -16,12 +16,18 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <tycho-version>0.17.0</tycho-version>
     <tinkerpop-version>2.3.0</tinkerpop-version>
+    <jung-version>2.0.1</jung-version>
   </properties>
  
   <modules>
     <module>org.ops4j.pax.tipi.platform.feature</module>
     <module>org.ops4j.pax.tipi.platform.feature.source</module>
     <module>org.ops4j.pax.tipi.platform.p2</module>
+
+    <module>org.ops4j.pax.tipi.com.tinkerpop.feature</module>
+    <module>org.ops4j.pax.tipi.com.tinkerpop.feature.source</module>
+    <module>org.ops4j.pax.tipi.net.sf.jung.feature</module>
+    <module>org.ops4j.pax.tipi.net.sf.jung.feature.source</module>
   </modules>
 
   <repositories>
@@ -37,6 +43,18 @@
       <groupId>org.ops4j.pax.tipi</groupId>
       <artifactId>org.ops4j.pax.tipi.cern.colt</artifactId>
       <version>1.2.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.ops4j.pax.tipi</groupId>
+      <artifactId>org.ops4j.pax.tipi.com.vividsolutions.jts</artifactId>
+      <version>1.13</version>
+    </dependency>
+    <dependency>
+      <groupId>org.ops4j.pax.tipi</groupId>
+      <artifactId>org.ops4j.pax.tipi.com.vividsolutions.jts</artifactId>
+      <version>1.13</version>
+      <classifier>sources</classifier>
     </dependency>
 
     <dependency>
@@ -83,6 +101,16 @@
     </dependency>
     <dependency>
       <groupId>org.ops4j.pax.tipi</groupId>
+      <artifactId>org.ops4j.pax.tipi.com.tinkerpop.blueprints.graph.jung</artifactId>
+      <version>${tinkerpop-version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.ops4j.pax.tipi</groupId>
+      <artifactId>org.ops4j.pax.tipi.com.tinkerpop.blueprints.neo4j.graph</artifactId>
+      <version>${tinkerpop-version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.ops4j.pax.tipi</groupId>
       <artifactId>org.ops4j.pax.tipi.com.tinkerpop.blueprints.orient.graph</artifactId>
       <version>${tinkerpop-version}</version>
     </dependency>
@@ -115,6 +143,18 @@
     </dependency>
     <dependency>
       <groupId>org.ops4j.pax.tipi</groupId>
+      <artifactId>org.ops4j.pax.tipi.com.tinkerpop.blueprints.graph.jung</artifactId>
+      <version>${tinkerpop-version}</version>
+      <classifier>sources</classifier>
+    </dependency>
+     <dependency>
+      <groupId>org.ops4j.pax.tipi</groupId>
+      <artifactId>org.ops4j.pax.tipi.com.tinkerpop.blueprints.neo4j.graph</artifactId>
+      <version>${tinkerpop-version}</version>
+      <classifier>sources</classifier>
+    </dependency>
+    <dependency>
+      <groupId>org.ops4j.pax.tipi</groupId>
       <artifactId>org.ops4j.pax.tipi.com.tinkerpop.blueprints.orient.graph</artifactId>
       <version>${tinkerpop-version}</version>
       <classifier>sources</classifier>
@@ -143,7 +183,99 @@
       <version>${tinkerpop-version}</version>
       <classifier>sources</classifier>
     </dependency>
-
+    
+    <!-- Jung -->
+    <dependency>
+      <groupId>org.ops4j.pax.tipi</groupId>
+      <artifactId>org.ops4j.pax.tipi.net.sf.jung.algorithms</artifactId>
+      <version>${jung-version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.ops4j.pax.tipi</groupId>
+      <artifactId>org.ops4j.pax.tipi.net.sf.jung.api</artifactId>
+      <version>${jung-version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.ops4j.pax.tipi</groupId>
+      <artifactId>org.ops4j.pax.tipi.net.sf.jung.graph.impl</artifactId>
+      <version>${jung-version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.ops4j.pax.tipi</groupId>
+      <artifactId>org.ops4j.pax.tipi.net.sf.jung.io</artifactId>
+      <version>${jung-version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.ops4j.pax.tipi</groupId>
+      <artifactId>org.ops4j.pax.tipi.net.sf.jung.jai</artifactId>
+      <version>${jung-version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.ops4j.pax.tipi</groupId>
+      <artifactId>org.ops4j.pax.tipi.net.sf.jung.3d</artifactId>
+      <version>${jung-version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.ops4j.pax.tipi</groupId>
+      <artifactId>org.ops4j.pax.tipi.net.sf.jung.visualization</artifactId>
+      <version>${jung-version}</version>
+    </dependency>
+ 
+    <!-- Jung Sources -->
+    <dependency>
+      <groupId>org.ops4j.pax.tipi</groupId>
+      <artifactId>org.ops4j.pax.tipi.net.sf.jung.algorithms</artifactId>
+      <version>${jung-version}</version>
+      <classifier>sources</classifier>
+    </dependency>
+    <dependency>
+      <groupId>org.ops4j.pax.tipi</groupId>
+      <artifactId>org.ops4j.pax.tipi.net.sf.jung.api</artifactId>
+      <version>${jung-version}</version>
+      <classifier>sources</classifier>
+    </dependency>
+    <dependency>
+      <groupId>org.ops4j.pax.tipi</groupId>
+      <artifactId>org.ops4j.pax.tipi.net.sf.jung.graph.impl</artifactId>
+      <version>${jung-version}</version>
+      <classifier>sources</classifier>
+    </dependency>
+    <dependency>
+      <groupId>org.ops4j.pax.tipi</groupId>
+      <artifactId>org.ops4j.pax.tipi.net.sf.jung.io</artifactId>
+      <version>${jung-version}</version>
+      <classifier>sources</classifier>
+    </dependency>
+    <dependency>
+      <groupId>org.ops4j.pax.tipi</groupId>
+      <artifactId>org.ops4j.pax.tipi.net.sf.jung.jai</artifactId>
+      <version>${jung-version}</version>
+      <classifier>sources</classifier>
+    </dependency>
+    <dependency>
+      <groupId>org.ops4j.pax.tipi</groupId>
+      <artifactId>org.ops4j.pax.tipi.net.sf.jung.3d</artifactId>
+      <version>${jung-version}</version>
+      <classifier>sources</classifier>
+    </dependency>
+    <dependency>
+      <groupId>org.ops4j.pax.tipi</groupId>
+      <artifactId>org.ops4j.pax.tipi.net.sf.jung.visualization</artifactId>
+      <version>${jung-version}</version>
+      <classifier>sources</classifier>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.ops4j.pax.tipi</groupId>
+      <artifactId>org.ops4j.pax.tipi.net.sourceforge.collections.generic</artifactId>
+      <version>4.01</version>
+    </dependency>
+    <dependency>
+      <groupId>org.ops4j.pax.tipi</groupId>
+      <artifactId>org.ops4j.pax.tipi.net.sourceforge.collections.generic</artifactId>
+      <version>4.01</version>
+      <classifier>sources</classifier>
+    </dependency>
 
     <dependency>
       <groupId>org.ops4j.pax.tipi</groupId>
@@ -154,6 +286,21 @@
       <groupId>org.ops4j.pax.tipi</groupId>
       <artifactId>org.ops4j.pax.tipi.mysql.connector.java</artifactId>
       <version>5.1.22.2-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>org.ops4j.pax.tipi</groupId>
+      <artifactId>org.ops4j.pax.tipi.java3d.j3d.core</artifactId>
+      <version>1.3.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.ops4j.pax.tipi</groupId>
+      <artifactId>org.ops4j.pax.tipi.java3d.j3d.core.utils</artifactId>
+      <version>1.3.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.ops4j.pax.tipi</groupId>
+      <artifactId>org.ops4j.pax.tipi.java3d.vecmath</artifactId>
+      <version>1.3.2</version>
     </dependency>
     <dependency>
       <groupId>org.ops4j.pax.tipi</groupId>

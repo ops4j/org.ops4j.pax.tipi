@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="org.ops4j.pax.tipi.platform.feature"
-      label="OPS4J Pax Tipi Platform Feature"
-      version="1.0.0.qualifier">
+      id="org.ops4j.pax.tipi.net.sf.jung.feature"
+      label="OPS4J Pax Tipi Jung Feature"
+      version="1.0.0.qualifier"
+      provider-name="OPS4J">
 
    <description url="http://www.example.com/description">
       [Enter Feature Description here.]
@@ -15,50 +16,7 @@
    <license url="http://www.example.com/license">
       [Enter License Description here.]
    </license>
-   
-   <includes
-         id="org.ops4j.pax.tipi.com.tinkerpop.feature"
-         version="0.0.0"/>
 
-   <includes
-         id="org.ops4j.pax.tipi.net.sf.jung.feature"
-         version="0.0.0"/>
-  
-   <plugin
-         id="org.ops4j.pax.tipi.cern.colt"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-   
-   <plugin
-         id="org.ops4j.pax.tipi.hamcrest.core"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.ops4j.pax.tipi.junit"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <!--plugin
-         id="org.ops4j.pax.tipi.com.amazonaws.java.sdk"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/-->
-   
-   <plugin
-         id="org.ops4j.pax.tipi.mysql.connector.java"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-    
    <plugin
          id="org.ops4j.pax.tipi.net.sf.jung.algorithms"
          download-size="0"
@@ -67,17 +25,45 @@
          unpack="false"/>
 
    <plugin
-         id="org.ops4j.pax.tipi.org.postgresql"
+         id="org.ops4j.pax.tipi.net.sf.jung.api"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="org.ops4j.pax.tipi.org.xerial.sqlite.jdbc"
+         id="org.ops4j.pax.tipi.net.sf.jung.graph.impl"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
+   <plugin
+         id="org.ops4j.pax.tipi.net.sf.jung.io"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.ops4j.pax.tipi.net.sf.jung.jai"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.ops4j.pax.tipi.net.sf.jung.3d"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.ops4j.pax.tipi.net.sf.jung.visualization"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+         
 </feature>
