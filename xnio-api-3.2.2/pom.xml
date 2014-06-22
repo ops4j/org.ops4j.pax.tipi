@@ -35,6 +35,7 @@
             !org.xnio._private, org.xnio.*;version=3.2
         </tipi.osgi.export>
         <tipi.osgi.private>org.xnio._private</tipi.osgi.private>
+        <tipi.osgi.failok>true</tipi.osgi.failok>
     </properties>
 
     <dependencies>
