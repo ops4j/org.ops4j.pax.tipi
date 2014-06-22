@@ -7,7 +7,7 @@
     <parent>
         <groupId>org.ops4j.pax.tipi</groupId>
         <artifactId>tipi-master</artifactId>
-        <version>1.0.0</version>
+        <version>1.1.0</version>
         <relativePath>../tipi-master</relativePath>
     </parent>
 
@@ -34,6 +34,11 @@
             org.xnio.nio;version=3.2
         </tipi.osgi.export>
         <tipi.osgi.import>!org.jboss.logging.annotations, *</tipi.osgi.import>
+        <!-- 
+            This bundle should really be a fragment of xnio-api, but due to the way Undertow and XNIO
+            interact with the ServiceLoader, the only way to make things work without patching the
+            sources is to make this a fragment of undertow-core. 
+        -->
         <tipi.osgi.fragment.host>org.ops4j.pax.tipi.undertow.core</tipi.osgi.fragment.host>
         <tipi.osgi.failok>true</tipi.osgi.failok>
     </properties>
@@ -65,12 +70,6 @@
             <plugin>
                 <groupId>org.apache.felix</groupId>
                 <artifactId>maven-bundle-plugin</artifactId>
-                <configuration>
-                    <instructions>
-                        <Ignore-Package>org.jboss.logging.annotations</Ignore-Package>
-                        <Fragment-Host>${tipi.osgi.fragment.host}</Fragment-Host>
-                    </instructions>
-                </configuration>
             </plugin>
         </plugins>
     </build>
