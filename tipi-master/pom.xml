@@ -255,6 +255,16 @@
             </roles>
             <timezone>UTC+1</timezone>
         </developer>
+        <developer>
+            <id>anierbeck</id>
+            <name>Achim Nierbeck</name>
+            <email>bcanhome@googlemail.com</email>
+            <organization>independent software developer</organization>
+            <roles>
+                <role>Developer</role>
+            </roles>
+            <timezone>UTC+1</timezone>
+        </developer>
     </developers>
 
 </project>
