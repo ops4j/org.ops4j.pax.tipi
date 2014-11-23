@@ -32,7 +32,7 @@
         <tipi.orig.artifactId>xnio-api</tipi.orig.artifactId>
         <tipi.orig.version>3.3.0.Final</tipi.orig.version>
         <tipi.osgi.export>
-            !org.xnio._private, org.xnio.*;version=3.2
+            !org.xnio._private, org.xnio.*;version=3.3
         </tipi.osgi.export>
         <tipi.osgi.private>org.xnio._private</tipi.osgi.private>
         <tipi.osgi.failok>true</tipi.osgi.failok>
