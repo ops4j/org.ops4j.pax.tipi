@@ -11,7 +11,7 @@
     </parent>
 
     <artifactId>org.ops4j.pax.tipi.junit</artifactId>
-    <version>4.12.0.2-SNAPSHOT</version>
+    <version>4.12.0.1-SNAPSHOT</version>
     <packaging>bundle</packaging>
     <name>OPS4J Pax Tipi - ${tipi.orig.artifactId}</name>
     <description>This OSGi bundle wraps ${tipi.orig.artifactId}-${tipi.orig.version}</description>
