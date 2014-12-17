@@ -6,12 +6,12 @@
     <parent>
         <groupId>org.ops4j.pax.tipi</groupId>
         <artifactId>tipi-master</artifactId>
-        <version>1.0.0</version>
+        <version>1.2.0-SNAPSHOT</version>
         <relativePath>../tipi-master</relativePath>
     </parent>
 
     <artifactId>org.ops4j.pax.tipi.tomcat-embed-logging-juli</artifactId>
-    <version>8.0.14.2-SNAPSHOT</version>
+    <version>8.0.14.1-SNAPSHOT</version>
     <packaging>bundle</packaging>
     <name>OPS4J Pax Tipi - ${tipi.orig.artifactId}</name>
     <description>This OSGi bundle wraps ${tipi.orig.artifactId}-${tipi.orig.version}</description>
@@ -34,8 +34,6 @@
         <tipi.osgi.export>
             org.apache*;version=${tipi.orig.version}
         </tipi.osgi.export>
-        <tipi.osgi.import>*</tipi.osgi.import>
-		<tipi.osgi.embed.dependency>*; scope=compile; type=!pom</tipi.osgi.embed.dependency>
     </properties>
 
     <dependencies>
@@ -44,7 +42,6 @@
             <artifactId>${tipi.orig.artifactId}</artifactId>
             <version>${tipi.orig.version}</version>
             <scope>provided</scope>
-            <optional>true</optional>
         </dependency>
     </dependencies>
 
@@ -53,6 +50,9 @@
             <plugin>
                 <groupId>org.apache.felix</groupId>
                 <artifactId>maven-bundle-plugin</artifactId>
+                <configuration>
+                    <dumpInstructions>dump.bnd</dumpInstructions>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -65,7 +65,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-release-plugin</artifactId>
-		<version>2.5.1</version>
             </plugin>
         </plugins>
     </build>
