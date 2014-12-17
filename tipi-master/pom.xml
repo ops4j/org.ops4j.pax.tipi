@@ -26,7 +26,7 @@
         <tipi.orig.version />
 
         <!-- value of Export-Package header - override in child POM -->
-        <tipi.osgi.export>!*</tipi.osgi.export>
+        <tipi.osgi.export>*</tipi.osgi.export>
 
         <!-- value of Import-Package header - override in child POM if needed -->
         <tipi.osgi.import>*</tipi.osgi.import>
@@ -35,7 +35,7 @@
         <tipi.osgi.failok>false</tipi.osgi.failok>
 
         <!-- value of Embed-Dependency instruction - override in child POM if needed -->
-        <tipi.osgi.embed.dependency>${tipi.orig.artifact.id};inline=true</tipi.osgi.embed.dependency>
+        <tipi.osgi.embed.dependency>${tipi.orig.artifactId};inline=true</tipi.osgi.embed.dependency>
 
 
         <tipi.osgi.doc>http://team.ops4j.org/wiki/display/PAXTIPI</tipi.osgi.doc>
@@ -68,6 +68,26 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-dependency-plugin</artifactId>
                     <executions>
+                        <!-- unpack the original manifest to have bnd merge the headers -->
+                        <execution>
+                            <id>unpack-resources</id>
+                            <phase>generate-resources</phase>
+                            <goals>
+                                <goal>unpack</goal>
+                            </goals>
+                            <configuration>
+                                <artifactItems>
+                                    <artifactItem>
+                                        <groupId>${tipi.orig.groupId}</groupId>
+                                        <artifactId>${tipi.orig.artifactId}</artifactId>
+                                        <version>${tipi.orig.version}</version>
+                                    </artifactItem>
+                                </artifactItems>
+                                <includes>META-INF/MANIFEST.MF</includes>
+                                <failOnMissingClassifierArtifact>false</failOnMissingClassifierArtifact>
+                                <outputDirectory>target/unpacked-resources</outputDirectory>
+                            </configuration>
+                        </execution>
 
                         <!-- unpack sources from original source artifact to be included in source 
                             bundle -->
@@ -145,6 +165,7 @@
                             <Embed-Dependency>${tipi.osgi.embed.dependency}</Embed-Dependency>
                             <Export-Package>${tipi.osgi.export}</Export-Package>
                             <Import-Package>${tipi.osgi.import}</Import-Package>
+                            <Include-Resource>target/unpacked-resources</Include-Resource>
                             <_failok>${tipi.osgi.failok}</_failok>
                             <_versionpolicy>[$(version;==;$(@)),$(version;+;$(@)))</_versionpolicy>
                             <_removeheaders>Embed-Dependency, Include-Resource, Private-Package</_removeheaders>
