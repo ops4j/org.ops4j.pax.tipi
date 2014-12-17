@@ -35,7 +35,6 @@
 	    org.apache.tomcat.websocket*;version=${tipi.orig.version}
         </tipi.osgi.export>
         <tipi.osgi.import>org.apache.tomcat.spdy;resolution:=optional, *</tipi.osgi.import>
-        <tipi.osgi.embed.dependency>*; scope=compile; type=!pom</tipi.osgi.embed.dependency>
     </properties>
 
     <dependencies>
@@ -44,14 +43,18 @@
             <artifactId>${tipi.orig.artifactId}</artifactId>
             <version>${tipi.orig.version}</version>
             <scope>provided</scope>
-            <optional>true</optional>
         </dependency>
          <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>org.ops4j.pax.tipi.tomcat-embed-core</artifactId>
             <version>${project.version}</version>
             <scope>provided</scope>
-            <optional>true</optional>
+        </dependency>
+         <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>org.ops4j.pax.tipi.tomcat-embed-logging-juli</artifactId>
+            <version>${project.version}</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 
