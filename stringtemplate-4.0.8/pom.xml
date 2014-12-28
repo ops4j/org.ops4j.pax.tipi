@@ -44,7 +44,7 @@
         <dependency>
             <groupId>org.ops4j.pax.tipi</groupId>
             <artifactId>org.ops4j.pax.tipi.antlr.runtime</artifactId>
-            <version>3.5.2.1-SNAPSHOT</version>
+            <version>3.5.2.1</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
