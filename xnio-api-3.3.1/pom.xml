@@ -10,14 +10,16 @@
         <relativePath>../tipi-master</relativePath>
     </parent>
 
-    <artifactId>org.ops4j.pax.tipi.xnio.nio</artifactId>
-    <version>3.3.0.3-SNAPSHOT</version>
+    <artifactId>org.ops4j.pax.tipi.xnio.api</artifactId>
+    <version>3.3.1.0-SNAPSHOT</version>
     <packaging>bundle</packaging>
     <name>OPS4J Pax Tipi - ${tipi.orig.artifactId}</name>
     <description>This OSGi bundle wraps ${tipi.orig.artifactId}-${tipi.orig.version}.</description>
 
-    <!-- This section may seem redundant, but if you delete it, maven-release-plugin will compute an 
-        incorrect URL. -->
+    <!-- 
+         This section may seem redundant, but if you delete it, maven-release-plugin will
+         compute an incorrect URL.
+     -->
     <scm>
         <connection>scm:git:git@github.com:ops4j/org.ops4j.pax.tipi.git</connection>
         <developerConnection>scm:git:git@github.com:ops4j/org.ops4j.pax.tipi.git</developerConnection>
@@ -27,12 +29,8 @@
 
     <properties>
         <tipi.orig.groupId>org.jboss.xnio</tipi.orig.groupId>
-        <tipi.orig.artifactId>xnio-nio</tipi.orig.artifactId>
-        <tipi.orig.version>3.3.0.Final</tipi.orig.version>
-        <tipi.osgi.export>
-            org.xnio.nio;version=3.3
-        </tipi.osgi.export>
-        <tipi.osgi.import>!org.jboss.logging.annotations, *</tipi.osgi.import>
+        <tipi.orig.artifactId>xnio-api</tipi.orig.artifactId>
+        <tipi.orig.version>3.3.1.Final</tipi.orig.version>
         <tipi.osgi.failok>true</tipi.osgi.failok>
     </properties>
 
@@ -41,12 +39,18 @@
             <groupId>${tipi.orig.groupId}</groupId>
             <artifactId>${tipi.orig.artifactId}</artifactId>
             <version>${tipi.orig.version}</version>
-            <optional>true</optional>
+            <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>org.ops4j.pax.tipi</groupId>
-            <artifactId>org.ops4j.pax.tipi.xnio.api</artifactId>
-            <version>3.3.0.1</version>
+            <groupId>org.jboss.logging</groupId>
+            <artifactId>jboss-logging</artifactId>
+            <version>3.1.4.GA</version>
+        </dependency>
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>org.osgi.core</artifactId>
+            <version>5.0.0</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 
@@ -62,6 +66,7 @@
                 <directory>src/main/resources</directory>
             </resource>
         </resources>
+
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -74,10 +79,22 @@
             <plugin>
                 <groupId>org.apache.felix</groupId>
                 <artifactId>maven-bundle-plugin</artifactId>
+                <version>2.5.4</version>
                 <configuration>
                     <instructions>
-                        <Include-Resource>{maven-resources}, target/unpacked-resources</Include-Resource>
-                        <Service-Component>OSGI-INF/*</Service-Component>
+                        <Import-Package>
+                            *;-split-package:=merge-first
+                        </Import-Package>
+                        <Export-Package>
+                            !org.xnio._private,
+                            org.xnio*;version=3.3.1;-split-package:=merge-first
+                        </Export-Package>
+                        <Private-Package>
+                            org.xnio._private;-split-package:=merge-first
+                        </Private-Package>
+                        <Embed-Dependency>
+                            xnio-api;inline=META-INF/**
+                        </Embed-Dependency>
                     </instructions>
                 </configuration>
             </plugin>

@@ -10,14 +10,16 @@
         <relativePath>../tipi-master</relativePath>
     </parent>
 
-    <artifactId>org.ops4j.pax.tipi.xnio.nio</artifactId>
-    <version>3.3.0.3-SNAPSHOT</version>
+    <artifactId>org.ops4j.pax.tipi.undertow.servlet</artifactId>
+    <version>1.2.8.0-SNAPSHOT</version>
     <packaging>bundle</packaging>
     <name>OPS4J Pax Tipi - ${tipi.orig.artifactId}</name>
     <description>This OSGi bundle wraps ${tipi.orig.artifactId}-${tipi.orig.version}.</description>
 
-    <!-- This section may seem redundant, but if you delete it, maven-release-plugin will compute an 
-        incorrect URL. -->
+    <!-- 
+         This section may seem redundant, but if you delete it, maven-release-plugin will
+         compute an incorrect URL.
+     -->
     <scm>
         <connection>scm:git:git@github.com:ops4j/org.ops4j.pax.tipi.git</connection>
         <developerConnection>scm:git:git@github.com:ops4j/org.ops4j.pax.tipi.git</developerConnection>
@@ -26,42 +28,42 @@
     </scm>
 
     <properties>
-        <tipi.orig.groupId>org.jboss.xnio</tipi.orig.groupId>
-        <tipi.orig.artifactId>xnio-nio</tipi.orig.artifactId>
-        <tipi.orig.version>3.3.0.Final</tipi.orig.version>
-        <tipi.osgi.export>
-            org.xnio.nio;version=3.3
-        </tipi.osgi.export>
-        <tipi.osgi.import>!org.jboss.logging.annotations, *</tipi.osgi.import>
+        <tipi.orig.groupId>io.undertow</tipi.orig.groupId>
+        <tipi.orig.artifactId>undertow-servlet</tipi.orig.artifactId>
+        <tipi.orig.version>1.2.8.Final</tipi.orig.version>
         <tipi.osgi.failok>true</tipi.osgi.failok>
     </properties>
 
     <dependencies>
         <dependency>
-            <groupId>${tipi.orig.groupId}</groupId>
-            <artifactId>${tipi.orig.artifactId}</artifactId>
-            <version>${tipi.orig.version}</version>
-            <optional>true</optional>
+            <groupId>org.ops4j.pax.tipi</groupId>
+            <artifactId>org.ops4j.pax.tipi.xnio.api</artifactId>
+            <version>3.3.1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.ops4j.pax.tipi</groupId>
-            <artifactId>org.ops4j.pax.tipi.xnio.api</artifactId>
-            <version>3.3.0.1</version>
+            <artifactId>org.ops4j.pax.tipi.undertow.core</artifactId>
+            <version>1.2.8.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>${tipi.orig.groupId}</groupId>
+            <artifactId>${tipi.orig.artifactId}</artifactId>
+            <version>${tipi.orig.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.annotation</groupId>
+            <artifactId>javax.annotation-api</artifactId>
+            <version>1.2</version>
         </dependency>
     </dependencies>
 
     <build>
-        <resources>
-            <resource>
-                <directory>${project.build.directory}/unpacked-sources</directory>
-                <includes>
-                    <include>**/*.java</include>
-                </includes>
-            </resource>
-            <resource>
-                <directory>src/main/resources</directory>
-            </resource>
-        </resources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -76,8 +78,13 @@
                 <artifactId>maven-bundle-plugin</artifactId>
                 <configuration>
                     <instructions>
-                        <Include-Resource>{maven-resources}, target/unpacked-resources</Include-Resource>
-                        <Service-Component>OSGI-INF/*</Service-Component>
+                        <Export-Package>
+                            io.undertow.servlet.*;version=1.2.8
+                        </Export-Package>
+                        <Import-Package>
+                            !sun.*,
+                            *
+                        </Import-Package>
                     </instructions>
                 </configuration>
             </plugin>

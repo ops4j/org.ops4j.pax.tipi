@@ -3,5 +3,5 @@
    <implementation class="org.xnio.nio.NioXnioProvider"/>
    <service>
       <provide interface="org.xnio.XnioProvider"/>
-   </service>org.xnio.nio.NioXnioProvider"/>
+   </service>
 </scr:component>

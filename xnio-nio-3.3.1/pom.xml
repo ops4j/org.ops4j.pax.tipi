@@ -11,7 +11,7 @@
     </parent>
 
     <artifactId>org.ops4j.pax.tipi.xnio.nio</artifactId>
-    <version>3.3.0.3-SNAPSHOT</version>
+    <version>3.3.1.0-SNAPSHOT</version>
     <packaging>bundle</packaging>
     <name>OPS4J Pax Tipi - ${tipi.orig.artifactId}</name>
     <description>This OSGi bundle wraps ${tipi.orig.artifactId}-${tipi.orig.version}.</description>
@@ -28,25 +28,32 @@
     <properties>
         <tipi.orig.groupId>org.jboss.xnio</tipi.orig.groupId>
         <tipi.orig.artifactId>xnio-nio</tipi.orig.artifactId>
-        <tipi.orig.version>3.3.0.Final</tipi.orig.version>
-        <tipi.osgi.export>
-            org.xnio.nio;version=3.3
-        </tipi.osgi.export>
-        <tipi.osgi.import>!org.jboss.logging.annotations, *</tipi.osgi.import>
+        <tipi.orig.version>3.3.1.Final</tipi.orig.version>
         <tipi.osgi.failok>true</tipi.osgi.failok>
     </properties>
 
     <dependencies>
         <dependency>
+            <groupId>org.ops4j.pax.tipi</groupId>
+            <artifactId>org.ops4j.pax.tipi.xnio.api</artifactId>
+            <version>3.3.1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.logging</groupId>
+            <artifactId>jboss-logging</artifactId>
+            <version>3.1.4.GA</version>
+        </dependency>
+        <dependency>
             <groupId>${tipi.orig.groupId}</groupId>
             <artifactId>${tipi.orig.artifactId}</artifactId>
             <version>${tipi.orig.version}</version>
-            <optional>true</optional>
+            <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>org.ops4j.pax.tipi</groupId>
-            <artifactId>org.ops4j.pax.tipi.xnio.api</artifactId>
-            <version>3.3.0.1</version>
+            <groupId>org.osgi</groupId>
+            <artifactId>org.osgi.core</artifactId>
+            <version>5.0.0</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 
@@ -76,8 +83,14 @@
                 <artifactId>maven-bundle-plugin</artifactId>
                 <configuration>
                     <instructions>
-                        <Include-Resource>{maven-resources}, target/unpacked-resources</Include-Resource>
-                        <Service-Component>OSGI-INF/*</Service-Component>
+                        <Import-Package>
+                            !org.jboss.logging.annotations,
+                            org.xnio*;version="[3.3,4)",
+                            *
+                        </Import-Package>
+                        <Export-Package>
+                            org.xnio.nio;version=3.3.1;-noimport:=true
+                        </Export-Package>
                     </instructions>
                 </configuration>
             </plugin>
