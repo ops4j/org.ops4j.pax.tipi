@@ -78,7 +78,11 @@
 				<artifactId>maven-bundle-plugin</artifactId>
 				<configuration>
 					<instructions>
-						<Include-Resource>{maven-resources}, target/unpacked-resources</Include-Resource>
+						<Include-Resource>
+							{maven-resources}, 
+							target/unpacked-resources, 
+							org/xnio/Xnio.class=target/classes/org/xnio/Xnio.class
+						</Include-Resource>
 						<Service-Component>OSGI-INF/*</Service-Component>
 					</instructions>
 				</configuration>
