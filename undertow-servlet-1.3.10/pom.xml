@@ -51,6 +51,11 @@
             <version>${tipi.orig.version}</version>
         </dependency>
         <dependency>
+            <groupId>${tipi.orig.groupId}</groupId>
+            <artifactId>undertow-servlet</artifactId>
+            <version>${tipi.orig.version}</version>
+        </dependency>
+        <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
             <version>3.1.0</version>
@@ -65,6 +70,17 @@
     </dependencies>
 
     <build>
+        <resources>
+            <resource>
+                <directory>${project.build.directory}/unpacked-sources</directory>
+                <includes>
+                    <include>**/*.java</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -77,6 +93,25 @@
             <plugin>
                 <groupId>org.apache.felix</groupId>
                 <artifactId>maven-bundle-plugin</artifactId>
+                <configuration>
+                    <instructions>
+                        <Include-Resource>{maven-resources}, target/unpacked-resources</Include-Resource>
+                        <Service-Component>OSGI-INF/*</Service-Component>
+						<Include-Resource>
+							{maven-resources}, 
+							target/unpacked-resources, 
+							io/undertow/servlet/core/DeploymentManagerImpl.class=target/classes/io/undertow/servlet/core/DeploymentManagerImpl.class
+						</Include-Resource>
+					</instructions>
+				</configuration>
+            </plugin>
+            <plugin>
+            	<groupId>org.apache.maven.plugins</groupId>
+            	<artifactId>maven-compiler-plugin</artifactId>
+            	<configuration>
+            		<source>1.7</source>
+            		<target>1.7</target>
+            	</configuration>
             </plugin>
         </plugins>
     </build>
