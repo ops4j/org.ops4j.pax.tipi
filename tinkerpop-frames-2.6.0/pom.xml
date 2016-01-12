@@ -10,8 +10,8 @@
         <relativePath>../tipi-master</relativePath>
     </parent>
 
-    <artifactId>org.ops4j.pax.tipi.blueprints-core</artifactId>
-    <version>2.6.0.1-SNAPSHOT</version>
+    <artifactId>org.ops4j.pax.tipi.frames</artifactId>
+    <version>2.6.0.1</version>
     <packaging>bundle</packaging>
     <name>OPS4J Pax Tipi - ${tipi.orig.artifactId}</name>
     <description>This OSGi bundle wraps ${tipi.orig.artifactId}-${tipi.orig.version}</description>
@@ -28,11 +28,11 @@
     </scm>
   
     <properties>
-        <tipi.orig.groupId>com.tinkerpop.blueprints</tipi.orig.groupId>
-        <tipi.orig.artifactId>blueprints-core</tipi.orig.artifactId>
+        <tipi.orig.groupId>com.tinkerpop</tipi.orig.groupId>
+        <tipi.orig.artifactId>frames</tipi.orig.artifactId>
         <tipi.orig.version>2.6.0</tipi.orig.version>
         <tipi.osgi.export>
-            com.tinkerpop.blueprints*;version=${tipi.orig.version}
+            com.tinkerpop.frames*;version=${tipi.orig.version}
         </tipi.osgi.export>
     </properties>
 
