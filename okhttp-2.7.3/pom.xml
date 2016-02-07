@@ -32,7 +32,7 @@
         <tipi.orig.artifactId>okhttp</tipi.orig.artifactId>
         <tipi.orig.version>2.7.3</tipi.orig.version>
         <tipi.osgi.export>
-            okhttp;version=2.7.3
+            com.squareup.okhttp;version=2.7.3
         </tipi.osgi.export> 		
 		<tipi.osgi.import>!android.util,*</tipi.osgi.import>
     </properties>
