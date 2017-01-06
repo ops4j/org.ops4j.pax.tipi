@@ -57,7 +57,6 @@ import static org.xnio._private.Messages.msg;
 /**
  * The XNIO provider class.
  *
- * @apiviz.landmark
  */
 @SuppressWarnings("unused")
 public abstract class Xnio {
