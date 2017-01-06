@@ -158,9 +158,6 @@ public class DeploymentManagerImpl implements DeploymentManager {
 
         deployment.setSessionManager(deploymentInfo.getSessionManagerFactory().createSessionManager(deployment));
         deployment.getSessionManager().setDefaultSessionTimeout(deploymentInfo.getDefaultSessionTimeout());
-        for(SessionListener listener : deploymentInfo.getSessionListeners()) {
-            deployment.getSessionManager().registerSessionListener(listener);
-        }
 
         final List<ThreadSetupAction> setup = new ArrayList<>();
         setup.add(ServletRequestContextThreadSetupAction.INSTANCE);
@@ -191,6 +188,9 @@ public class DeploymentManagerImpl implements DeploymentManager {
             }
 
             deployment.getSessionManager().registerSessionListener(new SessionListenerBridge(threadSetupAction, listeners, servletContext));
+            for(SessionListener listener : deploymentInfo.getSessionListeners()) {
+                deployment.getSessionManager().registerSessionListener(listener);
+            }
 
             initializeErrorPages(deployment, deploymentInfo);
             initializeMimeMappings(deployment, deploymentInfo);
@@ -330,7 +330,6 @@ public class DeploymentManagerImpl implements DeploymentManager {
             current = new ServletSecurityConstraintHandler(securityPathMatches, current);
         }
         List<AuthenticationMechanism> authenticationMechanisms = new LinkedList<>();
-        authenticationMechanisms.add(new CachedAuthenticatedSessionMechanism(identityManager)); //TODO: does this really need to be hard coded?
 
         String mechName = null;
         if (loginConfig != null || deploymentInfo.getJaspiAuthenticationMechanism() != null) {
@@ -372,7 +371,9 @@ public class DeploymentManagerImpl implements DeploymentManager {
                 authenticationMechanisms.add(factory.create(name, parser, properties));
             }
         }
-
+        if(deploymentInfo.isUseCachedAuthenticationMechanism()) {
+            authenticationMechanisms.add(new CachedAuthenticatedSessionMechanism(identityManager));
+        }
         deployment.setAuthenticationMechanisms(authenticationMechanisms);
         //if the JASPI auth mechanism is set then it takes over
         if(deploymentInfo.getJaspiAuthenticationMechanism() == null) {
@@ -555,7 +556,11 @@ public class DeploymentManagerImpl implements DeploymentManager {
         ThreadSetupAction.Handle handle = deployment.getThreadSetupAction().setup(null);
         try {
             for (Lifecycle object : deployment.getLifecycleObjects()) {
-                object.stop();
+                try {
+                    object.stop();
+                } catch (Exception e) {
+                    UndertowServletLogger.ROOT_LOGGER.failedToDestroy(object, e);
+                }
             }
             deployment.getSessionManager().stop();
         } finally {
