@@ -39,12 +39,7 @@ import java.util.Iterator;
 import java.util.ServiceLoader;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import javax.management.InstanceAlreadyExistsException;
-import javax.management.InstanceNotFoundException;
-import javax.management.MBeanRegistrationException;
 import javax.management.MBeanServer;
-import javax.management.MalformedObjectNameException;
-import javax.management.NotCompliantMBeanException;
 import javax.management.ObjectName;
 import org.xnio.management.XnioProviderMXBean;
 import org.xnio.management.XnioServerMXBean;
@@ -74,7 +69,18 @@ public abstract class Xnio {
 
     private static final RuntimePermission ALLOW_BLOCKING_SETTING = new RuntimePermission("changeThreadBlockingSetting");
 
+    static final class MBeanHolder {
+
     private static final MBeanServer MBEAN_SERVER;
+
+        static {
+            MBEAN_SERVER = doPrivileged(new PrivilegedAction<MBeanServer>() {
+                public MBeanServer run() {
+                    return ManagementFactory.getPlatformMBeanServer();
+                }
+            });
+        }
+    }
 
     /**
      * A flag indicating the presence of NIO.2 (JDK 7).
@@ -96,11 +102,6 @@ public abstract class Xnio {
             map.put(access, OptionMap.create(Options.FILE_ACCESS, access));
         }
         FILE_ACCESS_OPTION_MAPS = map;
-        MBEAN_SERVER = doPrivileged(new PrivilegedAction<MBeanServer>() {
-            public MBeanServer run() {
-                return ManagementFactory.getPlatformMBeanServer();
-            }
-        });
     }
 
     /**
@@ -177,8 +178,12 @@ public abstract class Xnio {
      *
      * @since 3.0
      */
-    public static Xnio getInstance(ClassLoader classLoader) {
-        return doGetInstance(null, ServiceLoader.load(XnioProvider.class, classLoader));
+    public static Xnio getInstance(final ClassLoader classLoader) {
+        return doGetInstance(null, doPrivileged(new PrivilegedAction<ServiceLoader<XnioProvider>>() {
+            public ServiceLoader<XnioProvider> run() {
+                return ServiceLoader.load(XnioProvider.class, classLoader);
+            }
+        }));
     }
 
     /**
@@ -190,7 +195,11 @@ public abstract class Xnio {
      * @since 3.0
      */
     public static Xnio getInstance() {
-        return doGetInstance(null, ServiceLoader.load(XnioProvider.class, Xnio.class.getClassLoader()));
+        return doGetInstance(null, doPrivileged(new PrivilegedAction<ServiceLoader<XnioProvider>>() {
+            public ServiceLoader<XnioProvider> run() {
+                return ServiceLoader.load(XnioProvider.class, Xnio.class.getClassLoader());
+            }
+        }));
     }
 
     /**
@@ -202,8 +211,12 @@ public abstract class Xnio {
      *
      * @since 3.0
      */
-    public static Xnio getInstance(String provider, ClassLoader classLoader) {
-        return doGetInstance(provider, ServiceLoader.load(XnioProvider.class, classLoader));
+    public static Xnio getInstance(String provider, final ClassLoader classLoader) {
+        return doGetInstance(provider, doPrivileged(new PrivilegedAction<ServiceLoader<XnioProvider>>() {
+            public ServiceLoader<XnioProvider> run() {
+                return ServiceLoader.load(XnioProvider.class, classLoader);
+            }
+        }));
     }
 
     /**
@@ -215,7 +228,11 @@ public abstract class Xnio {
      * @since 3.0
      */
     public static Xnio getInstance(String provider) {
-        return doGetInstance(provider, ServiceLoader.load(XnioProvider.class, Xnio.class.getClassLoader()));
+        return doGetInstance(provider, doPrivileged(new PrivilegedAction<ServiceLoader<XnioProvider>>() {
+            public ServiceLoader<XnioProvider> run() {
+                return ServiceLoader.load(XnioProvider.class, Xnio.class.getClassLoader());
+            }
+        }));
     }
 
     private static Xnio doGetInstance(final String provider, final ServiceLoader<XnioProvider> serviceLoader) {
@@ -549,9 +566,9 @@ public abstract class Xnio {
     protected static Closeable register(XnioProviderMXBean providerMXBean) {
         try {
             final ObjectName objectName = new ObjectName("org.xnio", ObjectProperties.properties(ObjectProperties.property("type", "Xnio"), ObjectProperties.property("provider", ObjectName.quote(providerMXBean.getName()))));
-            MBEAN_SERVER.registerMBean(providerMXBean, objectName);
+            MBeanHolder.MBEAN_SERVER.registerMBean(providerMXBean, objectName);
             return new MBeanCloseable(objectName);
-        } catch (Exception ignored) {
+        } catch (Throwable ignored) {
             return IoUtils.nullCloseable();
         }
     }
@@ -565,9 +582,9 @@ public abstract class Xnio {
     protected static Closeable register(XnioWorkerMXBean workerMXBean) {
         try {
             final ObjectName objectName = new ObjectName("org.xnio", ObjectProperties.properties(ObjectProperties.property("type", "Xnio"), ObjectProperties.property("provider", ObjectName.quote(workerMXBean.getProviderName())), ObjectProperties.property("worker", ObjectName.quote(workerMXBean.getName()))));
-            MBEAN_SERVER.registerMBean(workerMXBean, objectName);
+            MBeanHolder.MBEAN_SERVER.registerMBean(workerMXBean, objectName);
             return new MBeanCloseable(objectName);
-        } catch (Exception ignored) {
+        } catch (Throwable ignored) {
             return IoUtils.nullCloseable();
         }
     }
@@ -581,9 +598,9 @@ public abstract class Xnio {
     protected static Closeable register(XnioServerMXBean serverMXBean) {
         try {
             final ObjectName objectName = new ObjectName("org.xnio", ObjectProperties.properties(ObjectProperties.property("type", "Xnio"), ObjectProperties.property("provider", ObjectName.quote(serverMXBean.getProviderName())), ObjectProperties.property("worker", ObjectName.quote(serverMXBean.getWorkerName())), ObjectProperties.property("address", ObjectName.quote(serverMXBean.getBindAddress()))));
-            MBEAN_SERVER.registerMBean(serverMXBean, objectName);
+            MBeanHolder.MBEAN_SERVER.registerMBean(serverMXBean, objectName);
             return new MBeanCloseable(objectName);
-        } catch (Exception ignored) {
+        } catch (Throwable ignored) {
             return IoUtils.nullCloseable();
         }
     }
@@ -598,8 +615,8 @@ public abstract class Xnio {
 
         public void close() {
             if (! getAndSet(true)) try {
-                MBEAN_SERVER.unregisterMBean(objectName);
-            } catch (Exception ignored) {
+                MBeanHolder.MBEAN_SERVER.unregisterMBean(objectName);
+            } catch (Throwable ignored) {
             }
         }
     }
