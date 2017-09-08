@@ -11,7 +11,7 @@
     </parent>
 
     <artifactId>org.ops4j.pax.tipi.tomcat-embed-core</artifactId>
-    <version>8.5.20.1</version>
+    <version>8.5.20.2-SNAPSHOT</version>
     <packaging>bundle</packaging>
     <name>OPS4J Pax Tipi - ${tipi.orig.artifactId}</name>
     <description>This OSGi bundle wraps ${tipi.orig.artifactId}-${tipi.orig.version}</description>
@@ -21,7 +21,7 @@
         <connection>scm:git:git@github.com:ops4j/org.ops4j.pax.tipi.git</connection>
         <developerConnection>scm:git:git@github.com:ops4j/org.ops4j.pax.tipi.git</developerConnection>
         <url>git@github.com:ops4j/org.ops4j.pax.tipi.git</url>
-        <tag>org.ops4j.pax.tipi.tomcat-embed-core-8.5.20.1</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <properties>
