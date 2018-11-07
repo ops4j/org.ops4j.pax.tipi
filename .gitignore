@@ -5,3 +5,5 @@ bin
 .settings
 *~
 *.log
+.idea/
+*.iml
