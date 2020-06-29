@@ -28,7 +28,7 @@
         <servlet.version>3.1.0</servlet.version>
         <tipi.orig.groupId>org.apache.tomcat.embed</tipi.orig.groupId>
         <tipi.orig.artifactId>tomcat-embed-core</tipi.orig.artifactId>
-        <tipi.orig.version>8.5.32</tipi.orig.version>
+        <tipi.orig.version>8.5.55</tipi.orig.version>
         <tipi.osgi.export>
             org.apache.catalina*;version=${tipi.orig.version},
             org.apache.coyote*;version=${tipi.orig.version},
