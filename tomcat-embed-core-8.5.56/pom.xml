@@ -41,6 +41,7 @@
             javax.servlet.annotation;version=${servlet.version},
             javax.servlet.descriptor;version=${servlet.version},
             javax.servlet.jsp.tagext; version="2.3.1",
+            org.apache.catalina.tribes*;version=${tipi.orig.version};resolution:=optional,
             org.apache.juli.logging,
             *
         </tipi.osgi.import>
