@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.ops4j.pax.tipi</groupId>
+        <artifactId>tipi-master</artifactId>
+        <version>1.4.0</version>
+        <relativePath>../tipi-master</relativePath>
+    </parent>
+
+    <artifactId>org.ops4j.pax.tipi.tomcat-embed-core</artifactId>
+    <version>8.5.57.1-SNAPSHOT</version>
+    <packaging>bundle</packaging>
+    <name>OPS4J Pax Tipi - ${tipi.orig.artifactId}</name>
+    <description>This OSGi bundle wraps ${tipi.orig.artifactId}-${tipi.orig.version}</description>
+
+    <!-- This section may seem redundant, but if you delete it, maven-release-plugin will compute an incorrect URL. -->
+    <scm>
+        <connection>scm:git:git@github.com:ops4j/org.ops4j.pax.tipi.git</connection>
+        <developerConnection>scm:git:git@github.com:ops4j/org.ops4j.pax.tipi.git</developerConnection>
+        <url>git@github.com:ops4j/org.ops4j.pax.tipi.git</url>
+        <tag>HEAD</tag>
+    </scm>
+
+    <properties>
+        <servlet.version>3.1.0</servlet.version>
+        <tipi.orig.groupId>org.apache.tomcat.embed</tipi.orig.groupId>
+        <tipi.orig.artifactId>tomcat-embed-core</tipi.orig.artifactId>
+        <tipi.orig.version>8.5.57</tipi.orig.version>
+        <tipi.osgi.export>
+            org.apache.catalina*;version=${tipi.orig.version},
+            org.apache.coyote*;version=${tipi.orig.version},
+            org.apache.naming*;version=${tipi.orig.version},
+            org.apache.tomcat*;version=${tipi.orig.version}
+        </tipi.osgi.export>
+        <tipi.osgi.import>
+            javax.servlet;version=${servlet.version},
+            javax.servlet.http;version=${servlet.version},
+            javax.servlet.annotation;version=${servlet.version},
+            javax.servlet.descriptor;version=${servlet.version},
+            javax.servlet.jsp.tagext; version="2.3.1",
+            org.apache.catalina.tribes*;version="[8.5,9)";resolution:=optional,
+            org.apache.juli.logging,
+            *
+        </tipi.osgi.import>
+        <tipi.osgi.embed.dependency>
+            tomcat-embed-core;inline=org/apache/**|META-INF/**,
+        </tipi.osgi.embed.dependency>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>${tipi.orig.groupId}</groupId>
+            <artifactId>${tipi.orig.artifactId}</artifactId>
+            <version>${tipi.orig.version}</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>
