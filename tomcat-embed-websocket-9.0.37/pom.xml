@@ -6,7 +6,7 @@
     <parent>
         <groupId>org.ops4j.pax.tipi</groupId>
         <artifactId>tipi-master</artifactId>
-        <version>1.4.1-SNAPSHOT</version>
+        <version>1.4.1</version>
         <relativePath>../tipi-master</relativePath>
     </parent>
 
@@ -18,9 +18,9 @@
 
     <!-- This section may seem redundant, but if you delete it, maven-release-plugin will compute an incorrect URL. -->
     <scm>
-        <connection>scm:git:git@github.com:ops4j/org.ops4j.pax.tipi.git</connection>
-        <developerConnection>scm:git:git@github.com:ops4j/org.ops4j.pax.tipi.git</developerConnection>
-        <url>git@github.com:ops4j/org.ops4j.pax.tipi.git</url>
+        <connection>scm:git:https://github.com/ops4j/org.ops4j.pax.tipi.git</connection>
+        <developerConnection>scm:git:https://github.com/ops4j/org.ops4j.pax.tipi.git</developerConnection>
+        <url>https://github.com/ops4j/org.ops4j.pax.tipi.git</url>
     </scm>
 
     <properties>
@@ -55,7 +55,7 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>org.ops4j.pax.tipi.tomcat-embed-core</artifactId>
-            <version>9.0.37.1-SNAPSHOT</version>
+            <version>9.0.37.1</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
