@@ -46,10 +46,9 @@
     </prerequisites>
 
     <scm>
-        <connection>scm:git:git@github.com:ops4j/org.ops4j.pax.tipi.git</connection>
-        <developerConnection>scm:git:git@github.com:ops4j/org.ops4j.pax.tipi.git</developerConnection>
-        <url>git@github.com:ops4j/org.ops4j.pax.tipi.git</url>
-        <tag>HEAD</tag>
+        <connection>scm:git:https://github.com/ops4j/org.ops4j.pax.tipi.git</connection>
+        <developerConnection>scm:git:https://github.com/ops4j/org.ops4j.pax.tipi.git</developerConnection>
+        <url>http://github.com/ops4j/org.ops4j.pax.tipi.git</url>
     </scm>
 
     <build>
