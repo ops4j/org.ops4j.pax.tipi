@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.ops4j.pax.tipi</groupId>
+        <artifactId>tipi-master</artifactId>
+        <version>1.4.1-SNAPSHOT</version>
+        <relativePath>../tipi-master</relativePath>
+    </parent>
+
+    <artifactId>org.ops4j.pax.tipi.tomcat-embed-websocket</artifactId>
+    <version>9.0.37.1-SNAPSHOT</version>
+    <packaging>bundle</packaging>
+    <name>OPS4J Pax Tipi - ${tipi.orig.artifactId}</name>
+    <description>This OSGi bundle wraps ${tipi.orig.artifactId}-${tipi.orig.version}</description>
+
+    <!-- This section may seem redundant, but if you delete it, maven-release-plugin will compute an incorrect URL. -->
+    <scm>
+        <connection>scm:git:git@github.com:ops4j/org.ops4j.pax.tipi.git</connection>
+        <developerConnection>scm:git:git@github.com:ops4j/org.ops4j.pax.tipi.git</developerConnection>
+        <url>git@github.com:ops4j/org.ops4j.pax.tipi.git</url>
+    </scm>
+
+    <properties>
+        <tipi.orig.groupId>org.apache.tomcat.embed</tipi.orig.groupId>
+        <tipi.orig.artifactId>tomcat-embed-websocket</tipi.orig.artifactId>
+        <tipi.orig.version>9.0.37</tipi.orig.version>
+        <tipi.osgi.export>
+            org.apache.tomcat.websocket*;version=${tipi.orig.version}
+        </tipi.osgi.export>
+        <tipi.osgi.import>
+            org.apache.tomcat;version="[9,9.5)",
+            *
+        </tipi.osgi.import>
+        <tipi.osgi.embed.dependency>
+            tomcat-embed-websocket;inline=org/apache/**|META-INF/**,
+        </tipi.osgi.embed.dependency>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>${tipi.orig.groupId}</groupId>
+            <artifactId>${tipi.orig.artifactId}</artifactId>
+            <version>${tipi.orig.version}</version>
+            <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>${tipi.orig.groupId}</groupId>
+                    <artifactId>tomcat-embed-core</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>org.ops4j.pax.tipi.tomcat-embed-core</artifactId>
+            <version>9.0.37.1-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>
