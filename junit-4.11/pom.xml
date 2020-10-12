@@ -30,7 +30,7 @@
     <properties>
         <tipi.orig.groupId>junit</tipi.orig.groupId>
         <tipi.orig.artifactId>junit</tipi.orig.artifactId>
-        <tipi.orig.version>4.11</tipi.orig.version>
+        <tipi.orig.version>4.13.1</tipi.orig.version>
         <tipi.osgi.export>
             org.junit*;version=${tipi.orig.version},
             junit*;version=${tipi.orig.version}
