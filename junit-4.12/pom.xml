@@ -30,7 +30,7 @@
     <properties>
         <tipi.orig.groupId>junit</tipi.orig.groupId>
         <tipi.orig.artifactId>junit</tipi.orig.artifactId>
-        <tipi.orig.version>4.12</tipi.orig.version>
+        <tipi.orig.version>4.13.1</tipi.orig.version>
         <tipi.osgi.import>org.hamcrest, org.hamcrest.core</tipi.osgi.import>
         <tipi.osgi.export>
             org.junit*;version=${tipi.orig.version},
