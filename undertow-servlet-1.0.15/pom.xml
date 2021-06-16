@@ -30,7 +30,7 @@
     <properties>
         <tipi.orig.groupId>io.undertow</tipi.orig.groupId>
         <tipi.orig.artifactId>undertow-servlet</tipi.orig.artifactId>
-        <tipi.orig.version>1.0.15.Final</tipi.orig.version>
+        <tipi.orig.version>2.0.23.Final</tipi.orig.version>
         <tipi.osgi.export>
             io.undertow.servlet.*;version=1.0
         </tipi.osgi.export>
