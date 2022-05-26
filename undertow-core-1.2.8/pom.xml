@@ -30,7 +30,7 @@
     <properties>
         <tipi.orig.groupId>io.undertow</tipi.orig.groupId>
         <tipi.orig.artifactId>undertow-core</tipi.orig.artifactId>
-        <tipi.orig.version>1.2.8.Final</tipi.orig.version>
+        <tipi.orig.version>2.2.11.Final</tipi.orig.version>
         <tipi.osgi.failok>true</tipi.osgi.failok>
     </properties>
 
