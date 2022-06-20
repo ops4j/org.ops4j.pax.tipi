@@ -30,7 +30,7 @@
     <properties>
         <tipi.orig.groupId>mysql</tipi.orig.groupId>
         <tipi.orig.artifactId>mysql-connector-java</tipi.orig.artifactId>
-        <tipi.orig.version>5.1.22</tipi.orig.version>
+        <tipi.orig.version>8.0.28</tipi.orig.version>
         <tipi.osgi.import>
             org.jboss.*;resolution:=optional, com.mchange.*;resolution:=optional, *
         </tipi.osgi.import>
